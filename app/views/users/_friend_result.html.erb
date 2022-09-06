@@ -2,12 +2,22 @@
   <%= render 'layouts/messages'%>
 </div>
 
-<% if @friend %>
+<% if @friends %>
   <div class="card card-header results-block">
-    <strong>Email: </strong> <%= @friend.email %>
-    <strong>First Name: </strong> <%= @friend.first_name %>
-    <strong>Last Name: </strong> <%= @friend.last_name %>
-    <%= link_to 'Add to friend', '#',
-      class:'btn btn-xs btn-success', method: :post %>
+    <table class="col-md-12">
+      <tbody>
+
+        <% @friends.each do |friend| %>
+          <tr>
+            <td><strong>Name: </strong> <%= friend.full_name %></td>
+            <td><strong>Email: </strong> <%= friend.email %></td>
+            <td><%= link_to 'View Profile',
+              '#', class:'btn btn-xs btn-outline-info'%>
+            <%= link_to 'Add to friend', '#',
+              class:'btn btn-xs btn-success', method: :post %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 <% end %>
